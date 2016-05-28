@@ -26,6 +26,9 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });*/
+
+        BathingSitesView bath = (BathingSitesView) findViewById(R.id.bathingView);
+        bath.setAmountOfBathingSites(0);
     }
 
     @Override

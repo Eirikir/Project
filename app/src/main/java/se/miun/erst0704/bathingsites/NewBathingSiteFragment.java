@@ -9,15 +9,14 @@ import android.view.ViewGroup;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class NewBathingSiteFragment extends Fragment {
 
-    public MainActivityFragment() {
+    public NewBathingSiteFragment() {
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_main, container, false);
- //       return inflater.inflate(R.layout.bathing_sites_fragment, container, false);
+        return inflater.inflate(R.layout.fragment_new_bathing_site, container, false);
     }
 }

@@ -1,3 +1,4 @@
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,17 +9,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="se.miun.erst0704.bathingsites.MainActivityFragment"
     tools:showIn="@layout/activity_main">
-<!--
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
 
-    <ImageButton
+    <include layout="@layout/bathing_sites_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_bathing"/>
--->
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        />
+    <!--
     <se.miun.erst0704.bathingsites.BathingSitesView android:id="@+id/bathingView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,14 +26,17 @@
         >
 
         <ImageButton android:id="@+id/bathingImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:background="@drawable/ic_bathing"/>
 
         <TextView android:id="@+id/bathingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20dp"
             />
 
     </se.miun.erst0704.bathingsites.BathingSitesView>
+    -->
 </RelativeLayout>

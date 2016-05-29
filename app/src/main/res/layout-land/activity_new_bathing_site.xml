@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="se.miun.erst0704.bathingsites.MainActivity">
+    tools:context="se.miun.erst0704.bathingsites.NewBathingSiteActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -21,14 +21,33 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
-
+    <!-- In landscape, both fragments is shown side by side. -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/toolbar"
+        android:paddingTop="?attr/actionBarSize"
+        >
+        <include layout="@layout/bathing_sites_fragment"
+            android:id="@+id/leftSide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <include layout="@layout/content_new_bathing_site"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+<!--
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@android:drawable/ic_input_add" />
-
+        android:src="@android:drawable/ic_dialog_email" />
+-->
 </android.support.design.widget.CoordinatorLayout>

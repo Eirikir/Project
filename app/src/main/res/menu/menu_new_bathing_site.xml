@@ -1,0 +1,18 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="se.miun.erst0704.bathingsites.NewBathingSiteActivity">
+
+    <item
+        android:id="@+id/clearBtn"
+        android:title="@string/new_bath_clear"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/saveBtn"
+        android:title="@string/new_bath_save"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>

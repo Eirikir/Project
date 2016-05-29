@@ -1,0 +1,173 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="vertical"
+    >
+
+    <RelativeLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".NewBathingSiteFragment"
+        tools:showIn="@layout/activity_new_bathing_site"
+        >
+
+        <!-- NAME -->
+        <TextView android:id="@+id/labelName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_bath_name"
+            />
+        <EditText android:id="@+id/inputName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelName"
+            android:inputType="text"
+            />
+
+        <!-- DESCRIPTION -->
+        <TextView android:id="@+id/labelDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_bath_description"
+            android:layout_below="@id/inputName"
+            />
+        <EditText android:id="@+id/inputDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelDescription"
+            />
+
+        <!-- ADDRESS -->
+        <TextView android:id="@+id/labelAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_bath_address"
+            android:layout_below="@id/inputDescription"
+            />
+        <EditText android:id="@+id/inputAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelAddress"
+            />
+
+        <!-- COORDINATES -->
+        <LinearLayout   android:id="@+id/coordContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputAddress"
+            >
+
+            <!-- LONGITUDE -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical"
+                >
+
+                <TextView android:id="@+id/labelLongitude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_bath_long"
+                    />
+                <EditText android:id="@+id/inputLongitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    />
+            </LinearLayout>
+
+            <!-- LATITUDE -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical"
+                >
+
+                <TextView android:id="@+id/labelLatitude"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_bath_lat"
+                    />
+                <EditText android:id="@+id/inputLatitude"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    />
+            </LinearLayout>
+
+        </LinearLayout> <!-- END COORDINATES -->
+
+        <!-- GRADE -->
+        <TextView android:id="@+id/labelGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/new_bath_grade"
+            android:layout_below="@id/coordContainer"
+            />
+        <RatingBar android:id="@+id/inputGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/labelGrade"
+            android:numStars="5"
+            android:stepSize="1"
+            android:progressTint="@color/colorAccent"
+            />
+
+
+        <!-- TEMP -->
+        <LinearLayout   android:id="@+id/tempContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/inputGrade"
+            >
+
+            <!-- WATER TEMP -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical"
+                >
+
+                <TextView android:id="@+id/labelTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_bath_temp"
+                    />
+                <EditText android:id="@+id/inputTemp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    />
+            </LinearLayout>
+
+            <!-- TEMP DATE -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:orientation="vertical"
+                >
+
+                <TextView android:id="@+id/labelTempDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/new_bath_temp_date"
+                    />
+                <EditText android:id="@+id/inputTempDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="date"
+                    />
+            </LinearLayout>
+
+        </LinearLayout> <!-- END TEMP -->
+
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,5 +1,10 @@
 package se.miun.erst0704.bathingsites;
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +17,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class NewBathingSiteActivity extends AppCompatActivity {
     private EditText inputName, inputDescription, inputAddress,
@@ -67,6 +81,11 @@ public class NewBathingSiteActivity extends AppCompatActivity {
 
         else if(id == R.id.saveBtn) {
             saveSite();
+            return true;
+        }
+
+        else if(id == R.id.weather) {
+            new GetWeather().execute();
             return true;
         }
 
@@ -139,5 +158,102 @@ public class NewBathingSiteActivity extends AppCompatActivity {
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         }
 
+    }
+
+
+    private class GetWeather extends AsyncTask<String, Integer, String> {
+        private ProgressDialog pDialog;
+        private Drawable weatherPic;
+        private String condition, temp;
+
+        @Override
+        protected String doInBackground(String... args) {
+            InputStream is;
+//            String urlPath = "http://dt031g.programvaruteknik.nu/badplatser/weather.php?location=Stockholm&language=SW";
+            String urlPath = "http://dt031g.programvaruteknik.nu/badplatser/weather.php";
+            HttpURLConnection con = null;
+
+            try {
+                URL url = new URL(urlPath + "?location=Sundsvall&language=SW");
+                con = (HttpURLConnection) url.openConnection();
+
+                is = con.getInputStream();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+                String line = null;
+
+                for (int count = 1;(line = reader.readLine()) != null; count++) {
+
+                    // get relevant info, lines; 4,5,6,7,8,9
+                    if(count < 4)
+                        continue;
+                    int pos = line.indexOf(':');
+                    line = line.replace("<br>", ""); // remove end
+                    line = line.substring(pos+1);   // remove beginning
+//                    System.out.println(line);
+                    line = line.trim();
+
+                    switch(count) {
+                        case 4: condition = line; break;
+                        case 5: temp = line; break;
+
+                        case 9:
+                            URL url2 = new URL(line);
+                            HttpURLConnection con2 = (HttpURLConnection) url2.openConnection();
+                            InputStream ips = con2.getInputStream();
+                            weatherPic = Drawable.createFromStream(ips, null);
+                            ips.close();
+                            con2.disconnect();
+                            break;
+                    }
+                }
+
+                reader.close();
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            } finally {
+                if(con != null)
+                    con.disconnect();
+            }
+            return "";
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            // init progress dialog
+            pDialog = new ProgressDialog(NewBathingSiteActivity.this);
+
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+
+            pDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+            pDialog.setMessage("Getting current weather...");
+
+            pDialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+            pDialog.dismiss();  // dismiss progress dialog
+
+            // build new dialog for weather information
+            new AlertDialog.Builder(NewBathingSiteActivity.this)
+                    .setTitle("Current Weather")
+                    .setMessage(condition + "\n" + temp + "\u00b0")
+                    .setIcon(weatherPic)
+                    .setPositiveButton("OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            })
+                    .show();
+
+
+        }
     }
 }

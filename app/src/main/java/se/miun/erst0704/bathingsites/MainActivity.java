@@ -2,6 +2,7 @@ package se.miun.erst0704.bathingsites;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+
         // set initial amount of bathing sites
         BathingSitesView bath = (BathingSitesView) findViewById(R.id.bathingView);
         bath.setAmountOfBathingSites(0);
@@ -52,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         }
 

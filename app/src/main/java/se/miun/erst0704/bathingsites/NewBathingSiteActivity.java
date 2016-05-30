@@ -1,11 +1,16 @@
 package se.miun.erst0704.bathingsites;
 
 import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -86,6 +91,13 @@ public class NewBathingSiteActivity extends AppCompatActivity {
 
         else if(id == R.id.weather) {
             new GetWeather().execute();
+            return true;
+        }
+
+        else if(id == R.id.settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
+
             return true;
         }
 
@@ -170,16 +182,23 @@ public class NewBathingSiteActivity extends AppCompatActivity {
         protected String doInBackground(String... args) {
             InputStream is;
 //            String urlPath = "http://dt031g.programvaruteknik.nu/badplatser/weather.php?location=Stockholm&language=SW";
-            String urlPath = "http://dt031g.programvaruteknik.nu/badplatser/weather.php";
+//            String urlPath = "http://dt031g.programvaruteknik.nu/badplatser/weather.php";
             HttpURLConnection con = null;
 
+
             try {
+//                PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+                SharedPreferences settings_pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+                String urlPath = settings_pref.getString("weather_url", null);
+
                 URL url = new URL(urlPath + "?location=Sundsvall&language=SW");
                 con = (HttpURLConnection) url.openConnection();
 
                 is = con.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is));
                 String line = null;
+
+
 
                 for (int count = 1;(line = reader.readLine()) != null; count++) {
 

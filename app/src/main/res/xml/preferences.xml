@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:key="weather_url"
+        android:title="Weather URL"
+        android:summary="The source for our weather info."
+        android:defaultValue="http://dt031g.programvaruteknik.nu/badplatser/weather.php"
+        />
+
+</PreferenceScreen>

@@ -90,7 +90,21 @@ public class NewBathingSiteActivity extends AppCompatActivity {
         }
 
         else if(id == R.id.weather) {
-            new GetWeather().execute();
+            String location = null;
+            // determine location
+            String address = inputAddress.getText().toString(),
+                    longStr = inputLongitude.getText().toString(),
+                    latStr = inputLatitude.getText().toString();
+
+            if(!TextUtils.isEmpty(longStr) && !TextUtils.isEmpty(latStr))
+                location = longStr + '|' + latStr;
+            else if(!TextUtils.isEmpty(address))
+                location = address;
+
+            if(location != null)
+                new GetWeather(location).execute();
+            else
+                Toast.makeText(this, "You need to provide a location!", Toast.LENGTH_LONG).show();
             return true;
         }
 
@@ -176,22 +190,22 @@ public class NewBathingSiteActivity extends AppCompatActivity {
     private class GetWeather extends AsyncTask<String, Integer, String> {
         private ProgressDialog pDialog;
         private Drawable weatherPic;
-        private String condition, temp;
+        private String condition, temp, location;
+
+        public GetWeather(String location) {
+            this.location = location;
+        }
 
         @Override
         protected String doInBackground(String... args) {
             InputStream is;
-//            String urlPath = "http://dt031g.programvaruteknik.nu/badplatser/weather.php?location=Stockholm&language=SW";
-//            String urlPath = "http://dt031g.programvaruteknik.nu/badplatser/weather.php";
             HttpURLConnection con = null;
-
-
+            
             try {
-//                PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
                 SharedPreferences settings_pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                 String urlPath = settings_pref.getString("weather_url", null);
 
-                URL url = new URL(urlPath + "?location=Sundsvall&language=SW");
+                URL url = new URL(urlPath + "?location="+location+"&language=SW");
                 con = (HttpURLConnection) url.openConnection();
 
                 is = con.getInputStream();

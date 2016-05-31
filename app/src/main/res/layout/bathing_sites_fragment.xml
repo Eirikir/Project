@@ -21,7 +21,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:textSize="18dp"
-            android:text="0 Bathing Sites"
             />
 
 </se.miun.erst0704.bathingsites.BathingSitesView>

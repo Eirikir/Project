@@ -20,6 +20,11 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         prefs.registerOnSharedPreferenceChangeListener(this);
+
+        // update amount of stored bathing sites
+        BathingSitesView sites = (BathingSitesView) findViewById(R.id.bathingView);
+        int sitesAmount = DatabaseManager.getInstance(this).getAmountOfSites();
+        sites.setAmountOfBathingSites(sitesAmount);
     }
 
     @Override

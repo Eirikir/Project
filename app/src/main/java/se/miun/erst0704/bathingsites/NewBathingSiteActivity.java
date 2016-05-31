@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.zip.DataFormatException;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -152,6 +154,14 @@ public class NewBathingSiteActivity extends AppCompatActivity {
         return valid;
     }
 
+    private void saveToDatabase(BathingSite site) {
+        DatabaseManager dbManager = DatabaseManager.getInstance(this);
+        if(!dbManager.addBathingSite(site))
+            Toast.makeText(this, "Site already exists!", Toast.LENGTH_LONG).show();
+        else
+            Toast.makeText(this, site.toString(), Toast.LENGTH_LONG).show();
+    }
+
     private void saveSite() {
         if(validateInput()) {
 
@@ -165,7 +175,9 @@ public class NewBathingSiteActivity extends AppCompatActivity {
             newSite.setTemp(inputTemp.getText().toString());
             newSite.setDate(inputDate.getText().toString());
 
-            Toast.makeText(this, newSite.toString(), Toast.LENGTH_LONG).show();
+
+//            Toast.makeText(this, newSite.toString(), Toast.LENGTH_LONG).show();
+            saveToDatabase(newSite);
 /*
             String message = "";
             message += getResources().getString(R.string.new_bath_name) + " "

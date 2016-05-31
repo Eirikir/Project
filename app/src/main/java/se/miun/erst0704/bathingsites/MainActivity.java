@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         // set initial amount of bathing sites
         BathingSitesView bath = (BathingSitesView) findViewById(R.id.bathingView);
-        bath.setAmountOfBathingSites(0);
+        int sitesAmount = DatabaseManager.getInstance(this).getAmountOfSites();
+        bath.setAmountOfBathingSites(sitesAmount);
     }
 
     @Override

@@ -9,7 +9,7 @@ import java.util.Map;
 public class BathingSite {
     private Map<String, String> details = new HashMap<String, String>();
 
-    public BathingSite() {}
+//    public BathingSite() {}
 
     public void setName(String name)                { details.put("Name", name); }
     public void setDescription(String description)  { details.put("Description", description); }
@@ -28,6 +28,7 @@ public class BathingSite {
     public String getTemp()         { return details.get("Temp"); }
     public String getDate()         { return details.get("Date"); }
     public String getGrade()        { return details.get("Grade"); }
+
 
     @Override
     public String toString() {

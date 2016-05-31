@@ -78,7 +78,6 @@ public class NewBathingSiteActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.clearBtn) {
             clearAll();
             return true;
@@ -91,11 +90,11 @@ public class NewBathingSiteActivity extends AppCompatActivity {
 
         else if(id == R.id.weather) {
             String location = null;
-            // determine location
             String address = inputAddress.getText().toString(),
                     longStr = inputLongitude.getText().toString(),
                     latStr = inputLatitude.getText().toString();
 
+            // determine location, coordinates if possible, else try address
             if(!TextUtils.isEmpty(longStr) && !TextUtils.isEmpty(latStr))
                 location = longStr + '|' + latStr;
             else if(!TextUtils.isEmpty(address))
@@ -155,6 +154,19 @@ public class NewBathingSiteActivity extends AppCompatActivity {
 
     private void saveSite() {
         if(validateInput()) {
+
+            BathingSite newSite = new BathingSite();
+            newSite.setName(inputName.getText().toString());
+            newSite.setDescription(inputDescription.getText().toString());
+            newSite.setAddress(inputAddress.getText().toString());
+            newSite.setLongitude(inputLongitude.getText().toString());
+            newSite.setLatitude(inputLatitude.getText().toString());
+            newSite.setGrade(new String() + grade.getRating());
+            newSite.setTemp(inputTemp.getText().toString());
+            newSite.setDate(inputDate.getText().toString());
+
+            Toast.makeText(this, newSite.toString(), Toast.LENGTH_LONG).show();
+/*
             String message = "";
             message += getResources().getString(R.string.new_bath_name) + " "
                     + inputName.getText()
@@ -182,6 +194,9 @@ public class NewBathingSiteActivity extends AppCompatActivity {
                     + "\n";
 
             Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+*/
+            // finish activity (called if successfully saved site)
+//            finish();
         }
 
     }
@@ -200,7 +215,7 @@ public class NewBathingSiteActivity extends AppCompatActivity {
         protected String doInBackground(String... args) {
             InputStream is;
             HttpURLConnection con = null;
-            
+
             try {
                 SharedPreferences settings_pref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
                 String urlPath = settings_pref.getString("weather_url", null);

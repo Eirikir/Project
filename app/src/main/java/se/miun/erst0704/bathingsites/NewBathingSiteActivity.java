@@ -156,10 +156,19 @@ public class NewBathingSiteActivity extends AppCompatActivity {
 
     private void saveToDatabase(BathingSite site) {
         DatabaseManager dbManager = DatabaseManager.getInstance(this);
-        if(!dbManager.addBathingSite(site))
-            Toast.makeText(this, "Site already exists!", Toast.LENGTH_LONG).show();
-        else
+
+
+        if(dbManager.addBathingSite(site)) {
             Toast.makeText(this, site.toString(), Toast.LENGTH_LONG).show();
+            // finish activity
+            clearAll();
+            finish();
+        }
+
+        else
+            Toast.makeText(this, "Site already exists!", Toast.LENGTH_LONG).show();
+
+
     }
 
     private void saveSite() {
@@ -178,37 +187,8 @@ public class NewBathingSiteActivity extends AppCompatActivity {
 
 //            Toast.makeText(this, newSite.toString(), Toast.LENGTH_LONG).show();
             saveToDatabase(newSite);
-/*
-            String message = "";
-            message += getResources().getString(R.string.new_bath_name) + " "
-                    + inputName.getText()
-                    + "\n";
-            message += getResources().getString(R.string.new_bath_description) + " "
-                    + inputDescription.getText()
-                    + "\n";
-            message += getResources().getString(R.string.new_bath_address) + " "
-                    + inputAddress.getText()
-                    + "\n";
-            message += getResources().getString(R.string.new_bath_long) + " "
-                    + inputLongitude.getText()
-                    + "\n";
-            message += getResources().getString(R.string.new_bath_lat) + " "
-                    + inputLatitude.getText()
-                    + "\n";
-            message += getResources().getString(R.string.new_bath_grade) + " "
-                    + grade.getRating()
-                    + "\n";
-            message += getResources().getString(R.string.new_bath_temp) + " "
-                    + inputTemp.getText()
-                    + "\n";
-            message += getResources().getString(R.string.new_bath_temp_date) + " "
-                    + inputDate.getText()
-                    + "\n";
 
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-*/
-            // finish activity (called if successfully saved site)
-//            finish();
+
         }
 
     }

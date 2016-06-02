@@ -160,6 +160,9 @@ public class NewBathingSiteActivity extends AppCompatActivity {
 
         if(dbManager.addBathingSite(site)) {
             Toast.makeText(this, site.toString(), Toast.LENGTH_LONG).show();
+//            BathingSitesView bath = (BathingSitesView) findViewById(R.id.bathingView);
+//            int sitesAmount = dbManager.getAmountOfSites();
+//            bath.setAmountOfBathingSites(sitesAmount);
             // finish activity
             clearAll();
             finish();

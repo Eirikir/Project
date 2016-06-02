@@ -63,4 +63,13 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        BathingSitesView bath = (BathingSitesView) findViewById(R.id.bathingView);
+        int sitesAmount = DatabaseManager.getInstance(this).getAmountOfSites();
+        bath.setAmountOfBathingSites(sitesAmount);
+    }
 }

@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".NewBathingSiteActivity"
             android:label="@string/title_activity_new_bathing_site"
@@ -29,9 +30,23 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="se.miun.erst0704.bathingsites.MainActivity" />
         </activity>
+
+        <activity
+            android:name=".DownloadActivity"
+            android:label="Download Files"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="se.miun.erst0704.bathingsites.MainActivity" />
+
+        </activity>
+
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings">
+
+        </activity>
     </application>
 
 </manifest>

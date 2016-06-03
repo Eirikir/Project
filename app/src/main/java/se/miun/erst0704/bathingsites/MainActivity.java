@@ -53,9 +53,14 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent intent = new Intent(this, SettingsActivity.class);
+        Intent intent = null;
+
+        switch(id) {
+            case R.id.action_settings : intent = new Intent(this, SettingsActivity.class); break;
+            case R.id.download : intent = new Intent(this, DownloadActivity.class); break;
+        }
+
+        if(intent != null) {
             startActivity(intent);
             return true;
         }

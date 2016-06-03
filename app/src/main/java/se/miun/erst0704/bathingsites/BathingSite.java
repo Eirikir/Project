@@ -9,7 +9,14 @@ import java.util.Map;
 public class BathingSite {
     private Map<String, String> details = new HashMap<String, String>();
 
-//    public BathingSite() {}
+    public BathingSite() {}
+    public BathingSite(String name, String address, String longitude, String latitude) {
+        setName(name);
+        setAddress(address);
+        setLongitude(longitude);
+        setLatitude(latitude);
+
+    }
 
     public void setName(String name)                { details.put("Name", name); }
     public void setDescription(String description)  { details.put("Description", description); }
@@ -50,17 +57,6 @@ public class BathingSite {
         if(!getDate().isEmpty())
             tmp.append("\nTemp Date: " + getDate());
 
- /*       String tmp = "BATHING SITE SAVED" + '\n'
-                + "********************" + '\n'
-                + "Name        :" + getName() + '\n'
-                + "Description :" + getDescription() + '\n'
-                + "Address     :" + getAddress() + '\n'
-                + "Longitude   :" + getLongitude() + '\n'
-                + "Latitude    :" + getLatitude() + '\n'
-                + "Temp        :" + getTemp() + '\n'
-                + "Date        :" + getDate() + '\n'
-                + "Grade       :" + getGrade();
-*/
         return tmp.toString();
     }
 }

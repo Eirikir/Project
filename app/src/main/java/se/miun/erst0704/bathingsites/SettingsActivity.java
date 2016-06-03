@@ -22,10 +22,10 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         // update amount of stored bathing sites
-        BathingSitesView sites = (BathingSitesView) findViewById(R.id.bathingView);
+//        BathingSitesView sites = (BathingSitesView) findViewById(R.id.bathingView);
 
-        int sitesAmount = DatabaseManager.getInstance(this).getAmountOfSites();
-        sites.setAmountOfBathingSites(sitesAmount);
+//        int sitesAmount = DatabaseManager.getInstance(this).getAmountOfSites();
+//        sites.setAmountOfBathingSites(sitesAmount);
     }
 
     @Override

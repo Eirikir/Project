@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,9 +36,7 @@ public class MainActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         // set initial amount of bathing sites
-        BathingSitesView bath = (BathingSitesView) findViewById(R.id.bathingView);
-        int sitesAmount = DatabaseManager.getInstance(this).getAmountOfSites();
-        bath.setAmountOfBathingSites(sitesAmount);
+        BathingSitesView.updateBathingSitesAmount(this);
     }
 
     @Override
@@ -68,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        BathingSitesView bath = (BathingSitesView) findViewById(R.id.bathingView);
-        int sitesAmount = DatabaseManager.getInstance(this).getAmountOfSites();
-        bath.setAmountOfBathingSites(sitesAmount);
+        BathingSitesView.updateBathingSitesAmount(this);
     }
+
+
 }

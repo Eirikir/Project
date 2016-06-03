@@ -104,6 +104,7 @@ class SQLiteHelper extends SQLiteOpenHelper {
     }
 }
 
+// Data structure with detail values for database
 class DB_DETAILS {
     public static final int DB_VERSION = 2;
     public static final String

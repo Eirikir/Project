@@ -32,7 +32,25 @@ public class BathingSite {
 
     @Override
     public String toString() {
-        String tmp = "BATHING SITE SAVED" + '\n'
+
+        StringBuilder tmp = new StringBuilder();
+        tmp.append("Name: " + getName());
+        if(!getDescription().isEmpty())
+            tmp.append("\nDescription: " + getDescription());
+        if(!getAddress().isEmpty())
+            tmp.append("\nAddress: " + getAddress());
+        if(!getLongitude().isEmpty())
+            tmp.append("\nLongitude: " + getLongitude());
+        if(!getLatitude().isEmpty())
+            tmp.append("\nLatitude: " + getLatitude());
+        if(!getGrade().equals("0.0"))
+            tmp.append("\nGrade: " + getGrade());
+        if(!getTemp().isEmpty())
+            tmp.append("\nWater Temp: " + getTemp());
+        if(!getDate().isEmpty())
+            tmp.append("\nTemp Date: " + getDate());
+
+ /*       String tmp = "BATHING SITE SAVED" + '\n'
                 + "********************" + '\n'
                 + "Name        :" + getName() + '\n'
                 + "Description :" + getDescription() + '\n'
@@ -42,7 +60,7 @@ public class BathingSite {
                 + "Temp        :" + getTemp() + '\n'
                 + "Date        :" + getDate() + '\n'
                 + "Grade       :" + getGrade();
-
-        return tmp;
+*/
+        return tmp.toString();
     }
 }

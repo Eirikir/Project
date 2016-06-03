@@ -1,6 +1,7 @@
 package se.miun.erst0704.bathingsites;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
@@ -22,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -64,7 +66,19 @@ public class NewBathingSiteActivity extends AppCompatActivity {
         inputTemp = (EditText) findViewById(R.id.inputTemp);
         inputDate = (EditText) findViewById(R.id.inputTempDate);
         grade = (RatingBar) findViewById(R.id.inputGrade);
+
+        // sites amount
+//        updateSitesAmount();
+        BathingSitesView.updateBathingSitesAmount(this);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        BathingSitesView.updateBathingSitesAmount(this);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -156,20 +170,23 @@ public class NewBathingSiteActivity extends AppCompatActivity {
 
     private void saveToDatabase(BathingSite site) {
         DatabaseManager dbManager = DatabaseManager.getInstance(this);
-
+        String toastMessage = null;
 
         if(dbManager.addBathingSite(site)) {
-            Toast.makeText(this, site.toString(), Toast.LENGTH_LONG).show();
-//            BathingSitesView bath = (BathingSitesView) findViewById(R.id.bathingView);
-//            int sitesAmount = dbManager.getAmountOfSites();
-//            bath.setAmountOfBathingSites(sitesAmount);
+//            Toast.makeText(this, site.toString(), Toast.LENGTH_LONG).show();
+            toastMessage = "BATHING SITE SAVED" + '\n'
+                    + "********************" + '\n'
+                    + site.toString();
+
             // finish activity
             clearAll();
             finish();
         }
 
         else
-            Toast.makeText(this, "Site already exists!", Toast.LENGTH_LONG).show();
+            toastMessage = "Site already exists!";
+
+        Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show();
 
 
     }

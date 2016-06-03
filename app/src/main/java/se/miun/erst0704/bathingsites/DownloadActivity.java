@@ -3,6 +3,7 @@ package se.miun.erst0704.bathingsites;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.webkit.DownloadListener;
@@ -47,7 +48,9 @@ public class DownloadActivity extends AppCompatActivity {
             }
         });
 
-        browser.loadUrl("http://dt031g.programvaruteknik.nu/badplatser/koordinater/");
+        // load web page, based on url in preferences
+        String downloadURL = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString("download_url", null);
+        browser.loadUrl(downloadURL);
     }
 
     private class DownloadFile extends AsyncTask<String, Integer, String> {

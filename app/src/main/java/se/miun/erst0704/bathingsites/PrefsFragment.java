@@ -20,8 +20,13 @@ public class PrefsFragment extends PreferenceFragment {
         addPreferencesFromResource(R.xml.preferences);
 
         // set initial summary to weather preference
-        EditTextPreference weather = (EditTextPreference) getPreferenceScreen().findPreference("weather_url");
+        EditTextPreference pref = (EditTextPreference) getPreferenceScreen().findPreference("weather_url");
         String tmp = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("weather_url", null);
-        weather.setSummary(tmp);
+        pref.setSummary(tmp);
+
+        // set initial summary to download preference
+        pref = (EditTextPreference) getPreferenceScreen().findPreference("download_url");
+        tmp = PreferenceManager.getDefaultSharedPreferences(getActivity()).getString("download_url", null);
+        pref.setSummary(tmp);
     }
 }

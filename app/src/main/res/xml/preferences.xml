@@ -8,4 +8,11 @@
         android:defaultValue="http://dt031g.programvaruteknik.nu/badplatser/weather.php"
         />
 
+    <EditTextPreference
+        android:key="download_url"
+        android:title="Download URL"
+        android:summary="The source for downloading Bathing Sites."
+        android:defaultValue="http://dt031g.programvaruteknik.nu/badplatser/koordinater/"
+        />
+
 </PreferenceScreen>

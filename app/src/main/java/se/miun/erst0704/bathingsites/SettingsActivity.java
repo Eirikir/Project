@@ -34,6 +34,10 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
             String tmp = prefs.getString(key, null);
             findPreference(key).setSummary(tmp);
         }
+        else if(key.equals("download_url")) {
+            String tmp = prefs.getString(key, null);
+            findPreference(key).setSummary(tmp);
+        }
     }
 
 }
